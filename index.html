@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Testing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-lg p-8 max-w-md w-full text-center">
+      <h1 class="text-2xl font-bold text-gray-800 mb-6">Quote Generator</h1>
+      
+      <div class="mb-6 min-h-32 flex items-center justify-center">
+        <p id="con" class="text-lg text-gray-700 italic"></p>
+      </div>
+      
+      <h3 id="author" class="text-gray-600 font-medium mb-8"></h3>
+      
+      <button 
+        id="btn" 
+        onclick="getQuote()" 
+        class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg shadow transition-colors duration-300 cursor-pointer"
+      >
+        Dapatkan Quote
+      </button>
+    </div>
+
+    <script>
+      async function getQuote() {
+        const res = await fetch("https://api.quotable.io/random")
+        const quote = await res.json()
+        const con = document.getElementById("con")
+        let author = document.getElementById("author")
+        
+        con.textContent = quote.content
+        author.textContent = `- ${quote.author}`
+        return;
+      }
+    </script>
+  </body>
+</html>
