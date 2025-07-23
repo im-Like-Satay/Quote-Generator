@@ -26,11 +26,11 @@
     </div>
 
     <script>
-      async function getQuote() {
+      const getQuote = async() => {
         const res = await fetch("https://api.quotable.io/random")
         const quote = await res.json()
         const con = document.getElementById("con")
-        let author = document.getElementById("author")
+        const author = document.getElementById("author")
         
         con.textContent = quote.content
         author.textContent = `- ${quote.author}`
